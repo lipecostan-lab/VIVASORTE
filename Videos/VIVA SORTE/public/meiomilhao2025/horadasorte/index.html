@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCZm5Z-L1fEs1aDdgq-mNW4-vdcQgBT2OQ",
+          authDomain: "oficialvivasorte.firebaseapp.com",
+          projectId: "oficialvivasorte",
+          storageBucket: "oficialvivasorte.firebasestorage.app",
+          messagingSenderId: "561026150065",
+          appId: "1:561026150065:web:564900b099a78fb5583c90",
+          measurementId: "G-L55ZTYF53Q"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicação Premiada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        .main-content {
+            margin-top: 20px;
+        }
+        .image {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #ddd;
+            border-top: 6px solid #6a11cb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .message {
+            font-size: 1.2em;
+            margin-top: 15px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: none;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+        }
+        .indication-section {
+            margin-top: 30px;
+        }
+        .indication-section .whatsapp-btn, .copy-link-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+        .indication-section .whatsapp-btn:hover, .copy-link-btn:hover {
+            background: linear-gradient(45deg, #128c7e, #25d366);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Conteúdo principal centralizado -->
+    <div class="main-content">
+        <img src="images/1g.jpg" alt="Premiação" class="image" id="prizeImage">
+        <div class="spinner" id="spinner"></div>
+        <div class="message" id="message">Gerando números...</div>
+        <button id="redirectBtn" onclick="window.location.href='https://pay.ofsorteiovivasorte.site/nQ7kZ7kX6ALZ0eJ';">
+            PAGUE SUA COTA PRÊMIADA E RESGATE SEU PRÊMIO
+        </button>
+    </div>
+
+    <!-- Seção para indicar amigo pelo WhatsApp e copiar link -->
+    <div class="indication-section">
+        <h2>Indique um amigo e ganhe!</h2>
+        <p>Compartilhe com um amigo no WhatsApp ou copie o link abaixo para enviar. Envie para pelo menos 10 amigos e volte para pagar sua cota premiada:</p>
+        <button class="copy-link-btn" id="copyLinkBtn">Copiar Link de Indicação</button>
+        <a class="whatsapp-btn" id="whatsappShareBtn" target="_blank">Indicar pelo WhatsApp</a>
+    </div>
+
+    <div id="loadingMessage" style="display: none; margin-top: 20px;">
+        <p><strong>Carregando...</strong> Por favor, aguarde enquanto verificamos suas indicações.</p>
+        <div class="spinner" style="margin: 10px auto;"></div>
+    </div>
+
+    <script>
+        // Simula o término da geração de números
+        setTimeout(() => {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('message').innerText = 'Números gerados com sucesso!';
+        }, 3000);
+
+        // Função para compartilhar no WhatsApp
+        document.getElementById('whatsappShareBtn').href = `https://api.whatsapp.com/send?text=Confira esta oportunidade incrível! Clique no link para pagar sua cota premiada e resgatar seu prêmio: https://pay.vivapremiosoficial.site/5pjw3R8VymrG2lQ`;
+
+        // Função para copiar link de indicação
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            const link = 'https://pay.vivapremiosoficial.site/5pjw3R8VymrG2lQ';
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copiado com sucesso!');
+                document.getElementById('loadingMessage').style.display = 'block';
+                setTimeout(() => {
+                    alert('Indicações verificadas! Agora volte e pegar sua cota prêmiada.');
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    document.getElementById('redirectBtn').style.display = 'inline-block';
+                }, 5000); // Simula o tempo de espera para verificação
+            }).catch(err => {
+                alert('Erro ao copiar o link. Tente novamente.');
+            });
+        });
+    </script>
+
+</body>
+</html>
